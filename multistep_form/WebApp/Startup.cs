@@ -25,13 +25,8 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add cookie authentication
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-            //    AddCookie(opt => opt.LoginPath = "/Account/Login");
-
             services.AddControllersWithViews();
-//            services.AddDbContext<TravelExpertsContext>(options =>
-//options.UseSqlServer(Configuration.GetConnectionString("YourLocalConnection")));
+            services.AddDbContext<TravelExpertsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NewUserConnection")));
             services.AddRazorPages();
         }
 
