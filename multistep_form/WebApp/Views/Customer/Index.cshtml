@@ -1,0 +1,140 @@
+﻿@model TravelExpertsWebApp.Models.CustomerModel
+
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "_Layout";
+}
+@*[Ronnie]*@
+
+<!-- MultiStep Form -->
+<div class="container-fluid" id="grad1">
+    <div class="row justify-content-center mt-3">
+        <div class="col-10 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2><strong>Sign Up Your User Account</strong></h2>
+                <p>Fill all form field to go to next step</p>
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form id="msform" asp-action="Add">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="account"><strong>Account</strong></li>
+                                <li id="personal"><strong>Personal</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul> <!-- fieldsets -->
+                            <fieldset id="account-field">
+                                <div class="form-card">
+                                    <h2 class="fs-title">Account Information</h2>
+                                    <div class="form-group">
+                                        <label asp-for="UserLogin" class="control-label required"></label>
+                                        <input id="username" asp-for="UserLogin" class="form-control" />
+                                        <span id="usrNameErrMessage" asp-validation-for="UserLogin" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="UserPass" class="control-label required"></label>
+                                        <input type="password" asp-for="UserPass" class="form-control" id="password" />
+                                        <span asp-validation-for="UserPass" class="text-danger"></span>
+                                        <div id="pwd-message">
+                                            <strong>Password must contain the following:</strong>
+                                            <p id="letter" class="tips">At least one lowercase letter</p>
+                                            <p id="capital" class="tips">At least one capital letter</p>
+                                            <p id="number" class="tips">At least one number</p>
+                                            <p id="length" class="tips">At least 8 characters</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label required">Confirm Password</label>
+                                        <input type="password" id="pwd-confirm" class="form-control required" name="confirmPwd" />
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="confirmPwd" data-valmsg-replace="true" id="confirmPwdErrMessage"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </div>
+                            </fieldset>
+                            <fieldset id="info-field">
+                                <div class="form-card">
+                                    <h2 class="fs-title">Personal Information</h2>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="FirstName" class="control-label required"></label>
+                                            <input asp-for="FirstName" class="form-control" />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="LastName" class="control-label required"></label>
+                                            <input asp-for="LastName" class="form-control" />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label asp-for="Email" class="control-label"></label>
+                                            <input asp-for="Email" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-8">
+                                            <label asp-for="Address" class="control-label required"></label>
+                                            <input asp-for="Address" class="form-control" />
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label asp-for="City" class="control-label required"></label>
+                                            <input asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-4">
+                                            <label asp-for="Prov" class="control-label required"></label>
+                                            <input asp-for="Prov" class="form-control" />
+                                            <span asp-validation-for="Prov" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label asp-for="Postal" class="control-label required"></label>
+                                            <input asp-for="Postal" class="form-control" placeholder="A1A 1A1" id="zipcode" />
+                                            <span asp-validation-for="Postal" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label asp-for="Country" class="control-label required"></label>
+                                            <input asp-for="Country" class="form-control" />
+                                            <span asp-validation-for="Country" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="HomePhone" class="control-label required"></label>
+                                            <input asp-for="HomePhone" class="form-control" placeholder="1(999)-999-9999" />
+                                            <span asp-validation-for="HomePhone" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="BusPhone" class="control-label"></label>
+                                            <input asp-for="BusPhone" class="form-control" placeholder="1(999)-999-9999" />
+                                            <span asp-validation-for="BusPhone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" name="previous" class="btn previous action-button-previous" value="Previous" />
+                                    <input type="submit" name="submit" id="submit" class="next action-button" value="Submit" />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/js/CustomerRegistration.js"></script>
+}
